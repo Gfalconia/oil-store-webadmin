@@ -1,0 +1,21 @@
+<div mat-dialog-content>
+
+        <mat-form-field class="example-form-field">
+            <mat-label>Название</mat-label>
+        <input matInput type="text" [(ngModel)]="data.title">
+        </mat-form-field>
+
+        <mat-form-field class="example-form-field">
+            <mat-label>Описание</mat-label>
+        <input matInput type="text" [(ngModel)]="data.description">
+        </mat-form-field>
+
+        <mat-form-field class="example-form-field">
+            <mat-label>Цена</mat-label>
+        <input matInput type="text" [(ngModel)]="data.price">
+        </mat-form-field>
+        <img src={{data.image}} alt="Photo of Oil">
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  </div>
+</div>

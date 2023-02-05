@@ -1,0 +1,62 @@
+<mat-toolbar color="primary">
+  <span>Oil Store</span>
+  <span class="spacer"></span>
+  <span>Административная панель</span>
+</mat-toolbar>
+<mat-grid-list cols="4" rowHeight="4:1">
+  <mat-grid-tile><mat-form-field class="example-form-field">
+      <mat-label>Название</mat-label>
+      <input matInput type="text" #productTitle>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile><mat-form-field class="example-form-field">
+      <mat-label>Описание</mat-label>
+      <input matInput type="text" #productDescription>
+    </mat-form-field></mat-grid-tile>
+    <mat-grid-tile> <mat-form-field class="example-form-field">
+      <mat-label>Цена</mat-label>
+      <input matInput type="text" #productPrice>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button mat-button
+    (click)="add(productTitle.value, productDescription.value, productPrice.value); 
+    productTitle.value=''">Добавить новый продукт
+  </button>
+  <button mat-button
+  (click)="uploadImage()">Test
+</button>
+</mat-grid-tile>
+  </mat-grid-list>
+    <table mat-table [dataSource]="products" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let product"> {{product.id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Название</th>
+        <td mat-cell *matCellDef="let product"> {{product.title}} </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Описание</th>
+        <td mat-cell *matCellDef="let product"> {{product.description}} </td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Цена</th>
+        <td mat-cell *matCellDef="let product"> {{product.price}} </td>
+      </ng-container>
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>Редактирование</th>
+        <td mat-cell *matCellDef="let product"><button mat-button color="primary"
+          (click)="openDialog(product.id, product.title, product.description, product.image, product.price)">Редактировать продукт</button></td>
+      </ng-container>
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>Удаление</th>
+        <td mat-cell *matCellDef="let product">        
+           <button mat-button color="primary"
+          (click)="delete(product)">Удалить продукт</button></td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+ 
